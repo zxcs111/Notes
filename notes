@@ -1,0 +1,43 @@
+class Menu:
+    def __init__(food, choice):
+        food.menu_items = {
+            1: {"name": "Chicken na Pinakurat", "bill": 900},
+            2: {"name": "Inihaw na Manok", "bill": 490},
+            3: {"name": "Pinakbet", "bill": 590}
+        }
+        food.choice = choice
+        food.order_name = ""
+        food.order_bill = 0
+
+    def get_order(food):
+        MenuList = {
+            1: "Chicken na Pinakurat",
+            2: "Inihaw na Manok",
+            3: "Pinakbet"
+        }
+        food.order_name = MenuList.get(food.choice, "Invalid Choice")
+        if food.order_name == "Invalid Choice":
+            food.order_bill = 0
+        else:
+            food.order_bill = food.menu_items[food.choice]["bill"]
+
+    def display(food):
+        print(f"Order for table number {food.choice} is {food.order_name}.\n")
+        print(f"Bill is Php{food.order_bill}.00")
+        print("Thank you for dining!\nCome again!")
+
+
+class TestMenu:
+    def __init__(food):
+        print("--------------Menu--------------")
+        print("1. Chicken na Pinakurat = Php900")
+        print("2. Inihaw na Manok      = Php490")
+        print("3. Pinakbet             = Php590\n")
+
+        choice = int(input(""))
+        menu = Menu(choice)
+        menu.get_order()
+        menu.display()
+
+
+TestMenu()
